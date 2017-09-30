@@ -13,7 +13,7 @@ class SlackResponseView(APIView):
     serializer_class = SlackDataSerializer
 
     def post(self, request):
-        print('request.data:', request.data)
+        # print('request.data:', request.data)
         serializer = SlackDataSerializer(data=request.data)
         if serializer.is_valid() is True:
             serializer.save()
@@ -24,4 +24,6 @@ class SlackResponseView(APIView):
                 response = serializer.validated_data
             else:
                 return Response(data={'event': 'this field is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # print("response:", response)
         return Response(response, status=status.HTTP_200_OK)

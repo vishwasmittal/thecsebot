@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from .feature_selector import get_feature
+from bot_box.feature_selector import get_feature
+from bot_box.bot_func import *
 
 ''' events messages requests example
 
@@ -99,27 +100,28 @@ class SlackEventSerializer(serializers.Serializer):
     user = serializers.CharField(max_length=9)
     channel = serializers.CharField(max_length=9)
     text = serializers.CharField(required=False)
-    response = serializers.Field(required=False)
 
 
 class SlackDataSerializer(serializers.Serializer):
     event = SlackEventSerializer()
+    response = serializers.CharField(required=False)
 
     class Meta:
         fields = ('event',)
 
     def create(self, validated_data):
-        user = validated_data.get('user')
-        channel = validated_data.get('channel')
-        type = validated_data.get('type')
+        event = validated_data.get('event')
+        user = event.get('user')
+        channel = event.get('channel')
+        type = event.get('type')
         if type == 'message':
-            text = validated_data.get('text')
+            text = event.get('text')
         else:
             text = ""
         response = get_feature(text=text, user=user, channel=channel)
-        print('response:', response)
         self.validated_data['response'] = response
+        send_message(channel=channel, text=response)
         return response
 
     def update(self, instance, validated_data):
-        return "response"
+        return None
