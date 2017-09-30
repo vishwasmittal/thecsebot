@@ -91,12 +91,14 @@ from .feature_selector import get_feature
 
 class SlackChallengeSerializer(serializers.Serializer):
     challenge = serializers.CharField()
+    response = serializers.CharField(required=False)
 
 
 class SlackEventSerializer(serializers.Serializer):
-    text = serializers.CharField()
+    type = serializers.CharField()
     user = serializers.CharField(max_length=9)
     channel = serializers.CharField(max_length=9)
+    text = serializers.CharField(required=False)
     response = serializers.Field(required=False)
 
 
@@ -107,10 +109,16 @@ class SlackDataSerializer(serializers.Serializer):
         fields = ('event',)
 
     def create(self, validated_data):
-        text = validated_data.get('text')
         user = validated_data.get('user')
         channel = validated_data.get('channel')
+        type = validated_data.get('type')
+        if type == 'message':
+            text = validated_data.get('text')
+        else:
+            text = ""
         response = get_feature(text=text, user=user, channel=channel)
+        print('response:', response)
+        self.validated_data['response'] = response
         return response
 
     def update(self, instance, validated_data):
