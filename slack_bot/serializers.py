@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from bot_box.feature_selector import get_feature
-from bot_box.bot_func import *
+from bot_box.bot_func import send_message
 
 ''' events messages requests example
 
@@ -90,37 +89,42 @@ from bot_box.bot_func import *
     '''
 
 
-class SlackChallengeSerializer(serializers.Serializer):
-    challenge = serializers.CharField()
-    response = serializers.CharField(required=False)
+# class SlackChallengeSerializer(serializers.Serializer):
+#     challenge = serializers.CharField()
+#     response = serializers.CharField(required=False)
 
 
 class SlackEventSerializer(serializers.Serializer):
-    type = serializers.CharField()
-    user = serializers.CharField(max_length=9)
-    channel = serializers.CharField(max_length=9)
+    type = serializers.CharField(required=False)
+    user = serializers.CharField(max_length=9, required=False)
+    channel = serializers.CharField(max_length=9, required=False)
     text = serializers.CharField(required=False)
 
 
 class SlackDataSerializer(serializers.Serializer):
-    event = SlackEventSerializer()
-    response = serializers.CharField(required=False)
+    event_time = serializers.IntegerField()
+    event = SlackEventSerializer(required=False)
+    challenge = serializers.CharField(required=False)
+    response = serializers.CharField(required=False, read_only=True)
 
     class Meta:
-        fields = ('event',)
+        fields = ('event', 'challenge', 'response', 'event_time')
 
     def create(self, validated_data):
+        if 'challenge' in validated_data:
+            self.validated_data['response'] = validated_data.get('challenge')
+            return self.validated_data['response']
+        event_time = validated_data.get('event_time')
+        print('event_time:', event_time)
         event = validated_data.get('event')
         user = event.get('user')
         channel = event.get('channel')
         type = event.get('type')
-        if type == 'message':
+        if 'text' in event:
             text = event.get('text')
         else:
             text = ""
-        response = get_feature(text=text, user=user, channel=channel)
-        self.validated_data['response'] = response
-        send_message(channel=channel, text=response)
+        response = send_message(user_input=text, user=user, channel=channel, event_time=event_time)
         return response
 
     def update(self, instance, validated_data):

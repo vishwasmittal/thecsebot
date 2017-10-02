@@ -1,5 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 .env
+.imp_env_vars
 *.idea
 */cse_slack_bot/__pycache__/
 *slack_bot/__pycache__
