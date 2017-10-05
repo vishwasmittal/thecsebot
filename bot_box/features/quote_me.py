@@ -1,4 +1,4 @@
-from bot_box.features import requests, bsp  # imported in __init__.py
+from bot_box.features import requests, bsp, os  # imported in __init__.py
 
 ''' Sample Response
 
@@ -14,7 +14,7 @@ from bot_box.features import requests, bsp  # imported in __init__.py
 
 def quote_me_api():
     # TODO: include this url in .env file
-    url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=xml&lang=en"
+    url = os.environ.get('QUOTE_URL')
     while True:
         quote_resp = requests.get(url).text
         soup = bsp(quote_resp, 'html.parser')

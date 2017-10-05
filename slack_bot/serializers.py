@@ -97,7 +97,7 @@ class SlackEventSerializer(serializers.Serializer):
 
 
 class SlackDataSerializer(serializers.Serializer):
-    event_time = serializers.IntegerField()
+    event_time = serializers.IntegerField(required=False)
     event = SlackEventSerializer(required=False)
     challenge = serializers.CharField(required=False)
     response = serializers.CharField(required=False, read_only=True)
@@ -120,6 +120,7 @@ class SlackDataSerializer(serializers.Serializer):
         else:
             text = ""
         response = send_message(user_input=text, user=user, channel=channel, event_time=event_time)
+        self.validated_data['response'] = response
         return response
 
     def update(self, instance, validated_data):

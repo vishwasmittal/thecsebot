@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from slack_bot.auth_classes import CSRFExemptSessionAuthentication
 from slack_bot.serializers import *
 
 
@@ -10,6 +12,7 @@ from slack_bot.serializers import *
 
 
 class SlackResponseView(APIView):
+    authentication_classes = (CSRFExemptSessionAuthentication, )
     serializer_class = SlackDataSerializer
 
     def post(self, request):
@@ -18,7 +21,7 @@ class SlackResponseView(APIView):
         # if serializer.is_valid() is True:
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        response = serializer.validated_data.get('response')
+        response = serializer.validated_data
         # else:
         #     serializer = SlackChallengeSerializer(data=request.data)
         #     if serializer.is_valid():
