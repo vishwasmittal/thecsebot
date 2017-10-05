@@ -1,0 +1,19 @@
+Following is the list of all the environment variables that are needed to run this project.
+Obtain these and put them in a .env file in the project root directory.
+The of these variables be like:
+[key]=[value]
+
+
+SECRET_KEY: for running django project
+SLACK_BOT_TOKEN: auth token for connecting to bot
+
+QUOTE_URL: URL to obtain quotes from
+JOKE_URL: URL to obtain jokes from
+ANIMATE_URL: URL to obtain gifs from
+IMAGE_URL: URL to obtain images from
+CHATBOT_URL: URL to obtain chatbot responses from
+
+CHATBOT_BOTCUST2: a chatbot constant
+GIF_API_KEY
+GOOGLE_IMAGE_API_KEY
+IMAGE_SEARCH_ENGINE_ID
