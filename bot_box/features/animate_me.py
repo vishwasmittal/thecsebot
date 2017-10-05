@@ -1,8 +1,7 @@
 from bot_box.features import os, request, parse, json, randrange
 
-from bot_box.bot_constants import BOT_CREATER
+from bot_box.bot_constants import BOT_CREATER, USER_AGENT
 
-USER_AGENT = "Mozilla/5.0 Linux"
 GIF_API_KEY = os.environ.get('GIF_API_KEY')
 
 ''' api.giphy sample response
@@ -887,6 +886,11 @@ GIF_API_KEY = os.environ.get('GIF_API_KEY')
 
 
 def animate_me_api(search_query):
+    """
+    Result of animate command of user
+    :param search_query:
+    :return: URL of the gif or else an error message
+    """
     size_limit = 3000000
     search_limit = 5
     headers = {'user-agent': USER_AGENT}

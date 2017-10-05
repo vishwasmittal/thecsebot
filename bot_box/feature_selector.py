@@ -7,6 +7,11 @@ FILE_TAG = globals()["__name__"]
 # TODO: use regular expression instead of string matching
 
 def get_feature(user_input=""):
+    """
+    this determines the feature of the bot and fetch the response from its api
+    :param user_input:
+    :return: the response in the text form (either message or url) or None
+    """
     _input = user_input
     user_input = user_input.lower().replace(BOT_NAME, "").strip()
     if user_input == "":

@@ -10,14 +10,13 @@ prev_message_time = 0
 
 def get_response(event_time, user, user_input="", channel=None):
     """
-    to decide get the response for the bot
+    this function will do some pre-processing of the message and apply the necessary checks
     :param user_input: the input given bu the user
     :param user: who given the input
     :param channel: which channel
     :param event_time: the time when the event occurred
     :return: response of bot
     """
-    # this function will do some pre-processing of the message and apply the necessary checks
 
     curr_message_time = event_time
     if globals()['prev_message_time'] < curr_message_time + 1:

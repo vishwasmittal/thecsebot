@@ -13,6 +13,10 @@ from bot_box.features import requests, bsp, os  # imported in __init__.py
 
 
 def quote_me_api():
+    """
+    relsult of quote command of user
+    :return: the quote and its author
+    """
     # TODO: include this url in .env file
     url = os.environ.get('QUOTE_URL')
     while True:

@@ -1,9 +1,3 @@
-# import requests
-# import json
-# from urllib import request, parse
-# import os
-# from random import randrange
-#
 from bot_box.features import request, parse, os, randrange, json
 
 GOOGLE_IMAGE_API_KEY = os.environ.get("GOOGLE_IMAGE_API_KEY")
@@ -604,6 +598,11 @@ IMAGE_SEARCH_ENGINE_ID = os.environ.get("IMAGE_SEARCH_ENGINE_ID")
 
 
 def image_me_api(search_query):
+    """
+    Result of image command of user
+    :param search_query:
+    :return: URL of image or else error message
+    """
     base_url = os.environ.get('IMAGE_URL')
     params = {'key': GOOGLE_IMAGE_API_KEY, 'cx': IMAGE_SEARCH_ENGINE_ID, 'q': search_query}
     url_query = parse.urlencode(params)

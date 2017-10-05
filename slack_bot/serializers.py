@@ -110,7 +110,6 @@ class SlackDataSerializer(serializers.Serializer):
             self.validated_data['response'] = validated_data.get('challenge')
             return self.validated_data['response']
         event_time = validated_data.get('event_time')
-        print('event_time:', event_time)
         event = validated_data.get('event')
         user = event.get('user')
         channel = event.get('channel')

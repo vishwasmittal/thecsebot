@@ -6,10 +6,13 @@ CHATBOT_BOTCUST2 = os.environ.get("CHATBOT_BOTCUST2")
 
 
 def ONLINE_CHATBOT_RESP(user_input):
-    ''' gets the user input and contact our online chatbot in this case A.L.I.C.E.
+    """
+        gets the user input and contact our online chatbot in this case A.L.I.C.E.
         to get the natural language response from it and returns the response, the
         the response mai contain "ALICE" or "A.LI.C.E." replace it properly
-    '''
+        :param user_input: the input of user to be fed to chat bot
+        :return: the response given by chat bot
+    """
     url = CHATBOT_URL
     botcust2 = CHATBOT_BOTCUST2
     headers = {"Content-Type": "application/x-www-form-urlencoded", 'user-agent': USER_AGENT}

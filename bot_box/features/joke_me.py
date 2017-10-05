@@ -2,7 +2,11 @@ from bot_box.features import requests, json, os
 
 
 def joke_me_api():
-    while True:
+    """
+    result of joke command of user
+    :return: joke in the form of text
+    """
+    while True: # retries if there is any error
         try:
             url = os.environ.get('JOKE_URL')
             joke_resp_raw = requests.get(url).text

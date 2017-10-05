@@ -22,8 +22,7 @@ def send_message(event_time, user_input="", user=None, channel=None):
     response = get_response(user_input=user_input, user=user, channel=channel, event_time=event_time)
     if response is not None and slack_client.rtm_connect():
         a = slack_client.api_call("chat.postMessage", channel=channel, text=response, as_user=True)
-        print(FILE_TAG, '\n\na:', a)
-        return a  # if the message is successfully sent
+        return a
     return ""
 
 
