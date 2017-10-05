@@ -89,11 +89,6 @@ from bot_box.bot_func import send_message
     '''
 
 
-# class SlackChallengeSerializer(serializers.Serializer):
-#     challenge = serializers.CharField()
-#     response = serializers.CharField(required=False)
-
-
 class SlackEventSerializer(serializers.Serializer):
     type = serializers.CharField(required=False)
     user = serializers.CharField(max_length=9, required=False)

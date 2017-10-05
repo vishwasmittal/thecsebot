@@ -7,4 +7,5 @@
 *slack_bot/migrations/__pycache__/
 features/__pycache__/
 bot_box/__pycache__/
+bot_box/features/__pycache__
 

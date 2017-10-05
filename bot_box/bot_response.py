@@ -1,13 +1,12 @@
 from bot_box.features import joke_me
+from bot_box.feature_selector import get_feature
 from _datetime import datetime
+from bot_box.bot_constants import *
 
-BOT_ID = 'U7BHJS4F7'
-AT_BOT = '<@' + BOT_ID + '>'
 prev_message_time = 0
-print("globals()['prev_message_time']: ", globals()['prev_message_time'])
 
 
-def get_response(event_time, user_input="", user=None, channel=None):
+def get_response(event_time, user, user_input="", channel=None):
     """
     to decide get the response for the bot
     :param user_input: the input given bu the user
@@ -16,17 +15,21 @@ def get_response(event_time, user_input="", user=None, channel=None):
     :param event_time: the time when the event occurred
     :return: response of bot
     """
+    # this function will do some pre-processing of the message and apply the necessary checks
 
     curr_message_time = event_time
-    print("globals()['prev_message_time']: ", globals()['prev_message_time'])
-    print('curr_message_time: ', curr_message_time)
     if globals()['prev_message_time'] < curr_message_time + 1:
+        # prevents sending a message multiple times using the time of the event at which it occurred
         globals()['prev_message_time'] = curr_message_time
-        if user == BOT_ID:
+        if user == BOT_ID or user == SLACKBOT_ID or user_input.strip() == "":
+            # no response to messages sent by bot itself, slackbot or empty messages
             return None
-        elif user_input.startswith(AT_BOT):
-            return "sample response"
-
+        elif user_input.__contains__(AT_BOT):
+            # here pre-process the message
+            # like convert @bot into the BOT_NAME
+            user_input = user_input.strip().replace(AT_BOT, BOT_NAME)
+            response = get_feature(user_input=user_input)
+            return response
     return None
 
 # 'bot: <@U7BHJS4F7>,,,,,,,,,,, bottesting: <#C5QLDE198|bottesting> ,,,,,,,,,,, vishwas: <@U3SRS5L59>'

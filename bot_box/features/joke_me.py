@@ -1,5 +1,4 @@
-import requests
-import json
+from bot_box.features import requests, json
 
 
 def joke_me_api():

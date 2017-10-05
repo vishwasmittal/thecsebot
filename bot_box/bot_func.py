@@ -18,16 +18,11 @@ def send_message(event_time, user_input="", user=None, channel=None):
     """
 
     response = get_response(user_input=user_input, user=user, channel=channel, event_time=event_time)
-    if response is None:
-        return ""
-    print(slack_client.rtm_connect())
-    a = slack_client.api_call("chat.postMessage", channel=channel, text=response, as_user=True)
-    print('\n\na:', a)
-    return a
-
-
-if __name__ == "__main__":
-    send_message('C5QLDE198', 'Hello!! this is just a test, no need to be afraid :smile:')
+    if response is not None and slack_client.rtm_connect():
+        a = slack_client.api_call("chat.postMessage", channel=channel, text=response, as_user=True)
+        # print('\n\na:', a)
+        return a  # if the message is successfully sent
+    return ""
 
 
 
@@ -35,6 +30,16 @@ if __name__ == "__main__":
 
 
 
+
+
+
+
+
+
+
+
+# if __name__ == "__main__":
+#     send_message(channel='C5QLDE198', user_input='Hello!! this is just a test, no need to be afraid :smile:')
 
 # can also do all the things using api directly, no need to engage bot...
 # example: https://slack.com/api/chat.postMessage
