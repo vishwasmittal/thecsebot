@@ -3,6 +3,8 @@ from bot_box.feature_selector import get_feature
 from _datetime import datetime
 from bot_box.bot_constants import *
 
+FILE_TAG = globals()["__name__"]
+
 prev_message_time = 0
 
 

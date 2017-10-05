@@ -1,0 +1,30 @@
+from bot_box.features import json, bsp, request, parse, os
+from bot_box.bot_constants import *
+
+CHATBOT_URL = os.environ.get('CHATBOT_URL')
+CHATBOT_BOTCUST2 = os.environ.get("CHATBOT_BOTCUST2")
+
+
+def ONLINE_CHATBOT_RESP(user_input):
+    ''' gets the user input and contact our online chatbot in this case A.L.I.C.E.
+        to get the natural language response from it and returns the response, the
+        the response mai contain "ALICE" or "A.LI.C.E." replace it properly
+    '''
+    url = CHATBOT_URL
+    botcust2 = CHATBOT_BOTCUST2
+    headers = {"Content-Type": "application/x-www-form-urlencoded", 'user-agent': USER_AGENT}
+    req = request.Request(url, headers=headers)
+    datadict = {'botcust2': botcust2, 'input': user_input}
+    data = parse.urlencode(datadict)
+    data = data.encode('ascii')
+
+    resp = request.urlopen(req, data)
+    alice_resp = resp.read().decode()
+    soup = bsp(alice_resp, 'html.parser')
+    lines = soup.text.split('\n')
+    respond = lines[19]
+    if lines[20] is not "": respond += lines[20]
+    respond = respond.replace(ONLINE_CHATBOT_NAME2 + ": ", "")
+    respond = respond.split("   ")[0]
+    respond = respond.replace(CHATBOT_CREATER, BOT_CREATER)
+    return respond

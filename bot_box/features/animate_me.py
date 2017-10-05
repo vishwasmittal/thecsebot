@@ -890,7 +890,7 @@ def animate_me_api(search_query):
     size_limit = 3000000
     search_limit = 5
     headers = {'user-agent': USER_AGENT}
-    base_url = "http://api.giphy.com/v1/gifs/search"
+    base_url = os.environ.get('ANIMATE_URL')
     params = {'limit': search_limit, 'q': search_query, 'api_key': GIF_API_KEY}
     full_url = base_url + "?%s" % parse.urlencode(params)
     api_req = request.Request(full_url, headers=headers)

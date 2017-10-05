@@ -604,7 +604,7 @@ IMAGE_SEARCH_ENGINE_ID = os.environ.get("IMAGE_SEARCH_ENGINE_ID")
 
 
 def image_me_api(search_query):
-    base_url = 'https://www.googleapis.com/customsearch/v1'
+    base_url = os.environ.get('IMAGE_URL')
     params = {'key': GOOGLE_IMAGE_API_KEY, 'cx': IMAGE_SEARCH_ENGINE_ID, 'q': search_query}
     url_query = parse.urlencode(params)
     google_resp = request.urlopen(base_url + "?%s" % url_query)
