@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework.exceptions import AuthenticationFailed
+from django.contrib.auth import authenticate
 
 from bot_box.bot_func import send_message
 
@@ -124,3 +126,19 @@ class SlackDataSerializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         return None
+
+
+class AuthSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=30, label="User Name")
+    password = serializers.CharField(min_length=8, label="Password", style={'input_type': 'password'})
+
+    def validate(self, attrs):
+        username = attrs.get('username')
+        password = attrs.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user and not user.is_active:
+            raise AuthenticationFailed
+
+        attrs['user'] = user
+        return attrs
