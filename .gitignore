@@ -7,4 +7,4 @@
 features/__pycache__/
 bot_box/__pycache__/
 bot_box/features/__pycache__
-
+user_pk_file.csv
