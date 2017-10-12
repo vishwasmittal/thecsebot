@@ -1,15 +1,15 @@
-#The CSE Bot
+# The CSE Bot
 This is the code repository running at the heart of our cute little bot 
 in our slack team.
 ****
 
-##Contents
-* Structure
-* Setup
-* Testing
+## Contents
+* [Structure](#structure)
+* [Setup](#setup)
+* [Testing](#testing)
 
 
-##Structure
+## <a name="structure">Structure</a>
 This repo is divided into two parts
 * Server Part
 
@@ -22,17 +22,17 @@ This repo is divided into two parts
     This includes the directory **bot_box**
 
 
-###Server Part
+### Server Part
 This part deals with the HTTP request-response cycle between our server 
 and that of slack.
 
 
-###Bot Features
+### Bot Features
 This is the main area of contribution. Here is the core code running to 
 ensure the correct response of the bot.
 
 
-##Setup
+## <a name="setup">Setup</a>
 1. Create a new virtualenv by typing the command:
     
         $ virtualenv -p python3 <sample-env-name>
@@ -56,7 +56,7 @@ listed in *sample_dotenv* file and copy them in *.env*
 Now you are ready to add some awesome features in this bot!
 
 
-##Testing
+## <a name="testing">Testing</a>
 To test your feature there are few simple steps.
 1. Run Django server using:
 
@@ -68,4 +68,4 @@ To test your feature there are few simple steps.
 
 ****
 *Feel free to contribute*
->#This just in. What up!
+># This just in. What up!
