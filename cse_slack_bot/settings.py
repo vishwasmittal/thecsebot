@@ -74,16 +74,24 @@ WSGI_APPLICATION = 'cse_slack_bot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'slackbot',
-        'USER': 'tester',
-        'PASSWORD': 'tester',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'slackbot',
+#         'USER': 'tester',
+#         'PASSWORD': 'tester',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
+import dj_database_url
+
+if 'DATABASE_URL' not in os.environ:
+    print("Database url not found")
+
+DATABASES = {'default': dj_database_url.config()}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -131,4 +139,3 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-

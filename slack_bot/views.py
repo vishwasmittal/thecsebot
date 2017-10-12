@@ -23,7 +23,7 @@ class SlackResponseView(APIView):
 
 
 class DatabaseUpdateView(APIView):
-    authentication_classes = (CSRFExemptSessionAuthentication)
+    # authentication_classes = (CSRFExemptSessionAuthentication)
     serializer_class = AuthSerializer
 
     def post(self, request):
@@ -31,7 +31,7 @@ class DatabaseUpdateView(APIView):
         serializer.is_valid(raise_exception=True)
 
         user = serializer.validated_data['user']
-        if user.is_superuser():
+        if user.is_superuser:
             pk_extractor.main()
             return Response(data={'details': 'the database is successfully updated'})
         return Response(data={'details': "user doesn't has permission to update db"}, status=status.HTTP_403_FORBIDDEN)

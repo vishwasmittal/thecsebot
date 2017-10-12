@@ -133,12 +133,15 @@ class AuthSerializer(serializers.Serializer):
     password = serializers.CharField(min_length=8, label="Password", style={'input_type': 'password'})
 
     def validate(self, attrs):
+        print("\n\ngot here\n\n")
         username = attrs.get('username')
         password = attrs.get('password')
 
         user = authenticate(username=username, password=password)
+        print("got user\n", user)
         if user and not user.is_active:
             raise AuthenticationFailed
 
         attrs['user'] = user
+        print("attrs:", attrs)
         return attrs

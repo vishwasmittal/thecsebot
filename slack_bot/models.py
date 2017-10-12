@@ -25,7 +25,7 @@ class SlackUser(models.Model):
     is_admin = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.eno) + ":" + self.name
+        return str(self.eno) + '    ' + self.uid + '    ' + self.name
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):

@@ -36,6 +36,7 @@ def get_feature(user_input=""):
     elif user_input.startswith("info"):
         query = user_input.replace("info", "").strip()
         query = query.replace('<', '').replace('@', '').replace('>', '').strip()
+        print("\n\n\nquery: ", query)
         if query.__len__() != 9:
             return None
         return bot_info.bot_info_api(query)
