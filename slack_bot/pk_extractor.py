@@ -2,6 +2,7 @@ import os
 import json
 
 from slack_bot.models import SlackUser as User
+from bot_box.bot_func import user_info
 
 from oauth2client import client
 from apiclient import discovery
@@ -45,7 +46,7 @@ def sheet_data():
 
 
 def slack_data():
-    return slack_client.api_call("users.list")
+    return user_info()
 
 
 def pk_extractor():
@@ -55,7 +56,6 @@ def pk_extractor():
     count = 0
     sheet = sheet_data()
     slack = slack_data()
-    print("LOG: ", "Online data received, starting processing")
     for user in slack['members']:
         # print(user)
         found = False

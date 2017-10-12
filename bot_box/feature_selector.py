@@ -1,5 +1,5 @@
 from bot_box.bot_constants import *
-from bot_box.features import joke_me, quote_me, animate_me, image_me, chat_me
+from bot_box.features import joke_me, quote_me, animate_me, image_me, chat_me, bot_info
 
 FILE_TAG = globals()["__name__"]
 
@@ -32,6 +32,14 @@ def get_feature(user_input=""):
     elif user_input.startswith("image me"):  # image me
         query = user_input.replace("image me", "").strip()
         return image_me.image_me_api(query)
+
+    elif user_input.startswith("info"):
+        query = user_input.replace("info", "").strip()
+        query = query.replace('<', '').replace('@', '').replace('>', '').strip()
+        if query.__len__() != 9:
+            return None
+        return bot_info.bot_info_api(query)
+
 
     # elif user_input.startswith(""):                               # (some cool function) me
     #     return None   # return as you want

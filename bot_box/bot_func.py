@@ -26,6 +26,11 @@ def send_message(event_time, user_input="", user=None, channel=None):
     return ""
 
 
+def user_info():
+    return slack_client.api_call("users.list")
+
+
+
 
 
 
