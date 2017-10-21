@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -85,13 +86,11 @@ WSGI_APPLICATION = 'cse_slack_bot.wsgi.application'
 #     }
 # }
 
-import dj_database_url
 
 if 'DATABASE_URL' not in os.environ:
     print("Database url not found")
 
 DATABASES = {'default': dj_database_url.config()}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -138,4 +137,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+
 )

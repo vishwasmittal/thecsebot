@@ -6,5 +6,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
                   url(r'^index', views.SlackResponseView.as_view(), name="slack-response"),
-                url(r'^fill_db', views.DatabaseUpdateView.as_view(), name="db_extractor")
+                  url(r'^fill_db', views.DatabaseUpdateView.as_view(), name="db_extractor"),
+                  url(r'^html', views.sample_html, name="sample-html"),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

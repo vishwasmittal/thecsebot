@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">#}
+{#    <link rel="stylesheet" type="text/css" href="slack_bot2/css/cards2.css">#}
+    <link rel="stylesheet" type="text/css" href='{% static "slack_bot/css/cards2.css" %}'>
+</head>
+
+<body>
+<div class="cards">
+
+    {% if users %}
+        {% for user in users %}
+            <div class="card">
+                <img src="http://s4c.cymru/temp/wave1.jpg">
+                <div class="card-title">
+                    <a href="#" class="toggle-info btn">
+                        <span class="left"></span>
+                        <span class="right"></span>
+                    </a>
+                    <h2>
+                        {{ user.name }}
+                        <small>{{ user.user_name }}</small>
+                    </h2>
+                </div>
+                <div class="card-flap flap1">
+                    <div class="card-description">
+                        This grid is an attempt to make something nice that works on touch devices. Ignoring hover
+                        states
+                        when they're not available etc.
+                    </div>
+                    <div class="card-flap flap2">
+                        <div class="card-actions">
+                            <a href="#" class="btn">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{#<script src="static/slack_bot2/js/cards.js"></script>#}
+<script src='{% static "slack_bot/js/cards.js" %}'></script>
+</body>
+</html>
