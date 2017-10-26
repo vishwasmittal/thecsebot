@@ -40,7 +40,7 @@ ensure the correct response of the bot.
 2. Activate that virtualenv by executing:
 
         #make sure you are inside your virtualenv directory that is created in prev step then execute
-        $ source bin/activate 
+        myvenv $ source bin/activate
     
 3. Install the *requirements* by using the command in terminal:
 
