@@ -29,21 +29,6 @@ def send_message(event_time, user_input="", user=None, channel=None):
 def user_info():
     return slack_client.api_call("users.list")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # if __name__ == "__main__":
 #     send_message(channel='C5QLDE198', user_input='Hello!! this is just a test, no need to be afraid :smile:')
 
