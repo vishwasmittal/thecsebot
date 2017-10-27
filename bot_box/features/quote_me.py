@@ -17,7 +17,6 @@ def quote_me_api():
     relsult of quote command of user
     :return: the quote and its author
     """
-    # TODO: include this url in .env file
     url = os.environ.get('QUOTE_URL')
     while True:
         quote_resp = requests.get(url).text
