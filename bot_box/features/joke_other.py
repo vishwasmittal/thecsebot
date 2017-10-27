@@ -3,8 +3,7 @@ from django.shortcuts import get_object_or_404
 from slack_bot.models import SlackUser
 
 def joke_other_api(query):
-    # Get Deatails of other user. Copied from bot_info
-
+    # Get Details of other user. Copied from bot_info
     user = get_object_or_404(SlackUser, uid=query.upper())
     name = user.name
 

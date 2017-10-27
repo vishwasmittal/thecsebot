@@ -41,6 +41,14 @@ def get_feature(user_input=""):
             return None
         return bot_info.bot_info_api(query)
 
+    elif user_input.startswith("joke"): #TODO: Find better filter for it. 'joke' conflicts with 'joke me' but should as of now
+        query = user_input.replace("info", "").strip()
+        query = query.replace('<', '').replace('@', '').replace('>', '').strip()
+        print("\n\n\nquery: ", query)
+        if query.__len__() != 9:
+            return None
+        return joke_other.joke_other_api(query)
+
 
     # elif user_input.startswith(""):                               # (some cool function) me
     #     return None   # return as you want
