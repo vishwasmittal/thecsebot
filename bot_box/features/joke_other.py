@@ -29,6 +29,13 @@ def joke_other_api(query):
             joke_resp = requests.get(url).json()
             if joke_resp and joke_resp['type'] == "success":
                 joke = joke_resp['value']['joke']
+                html_entities = {'&quot;' : '\"',
+                                 '&aspo;' : '\'',
+                                 '&amp;'  : '&' } #Add acording to need
+                
+                for data,replacement in html_entities.iteritems():
+                    joke = joke.replace(data,replacement)
+
                 return joke
         except Exception as e:
             print(e)
