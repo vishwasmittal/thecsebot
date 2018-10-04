@@ -3,7 +3,7 @@ This is the code repository running at the heart of our cute little bot
 in our slack team.
 ****
 
-## Contents
+## Content
 * [Structure](#structure)
 * [Setup](#setup)
 * [Testing](#testing)
