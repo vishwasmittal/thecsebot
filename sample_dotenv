@@ -6,6 +6,7 @@ The of these variables be like:
 
 SECRET_KEY: for running django project
 SLACK_BOT_TOKEN: auth token for connecting to bot
+DATABASE_URL: url for the database (skip if using inbuilt SQLite db)
 
 QUOTE_URL: URL to obtain quotes from
 JOKE_URL: URL to obtain jokes from
