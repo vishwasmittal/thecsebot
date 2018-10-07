@@ -68,4 +68,3 @@ To test your feature there are few simple steps.
 
 ****
 *Feel free to contribute*
-># This just in. What up!
