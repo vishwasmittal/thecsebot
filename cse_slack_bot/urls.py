@@ -18,7 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', include('slack_bot.urls')),
+    url(r'^bot/', include('slack_bot.urls')),
     # url(r'static', include('cse_slack_bot.static')),
-
+    url(r'^site/', include('bot_site.urls')),
 ]
